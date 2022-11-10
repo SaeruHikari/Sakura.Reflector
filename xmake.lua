@@ -12,7 +12,25 @@ target("meta")
     add_cxflags("-fno-rtti")
     add_links("lib/**")
     add_links("Version", "advapi32", "Shcore", "user32", "shell32", "Ole32", {public = true})
-
+    -- llvm & clang
+    add_linkdirs("llvm-14.0.6-windows-amd64-msvc17-msvcrt/lib")
+    add_linkdirs("clang-14.0.6-windows-amd64-msvc17-msvcrt/lib")
+    on_load(function (target, opt)
+        local libs = {}
+        local p = "llvm-14.0.6-windows-amd64-msvc17-msvcrt/lib/*.lib"
+        for __, filepath in ipairs(os.files(p)) do
+            local basename = path.basename(filepath)
+            table.insert(libs, basename)
+        end
+        local p2 = "clang-14.0.6-windows-amd64-msvc17-msvcrt/lib/*.lib"
+        for __, filepath in ipairs(os.files(p2)) do
+            local basename = path.basename(filepath)
+            table.insert(libs, basename)
+        end
+        target:add("links", libs)
+    end)
+    add_includedirs("llvm-14.0.6-windows-amd64-msvc17-msvcrt/include")
+    add_includedirs("clang-14.0.6-windows-amd64-msvc17-msvcrt/include")
 else
 
 target("meta")
@@ -22,7 +40,6 @@ target("meta")
     add_cxflags("-fno-rtti")
     add_syslinks("pthread", "curses")
     add_linkdirs("clang+llvm-15.0.1-x86_64-apple-darwin/lib")
-    add_links("clangTooling", "clangAST")
     on_load(function (target, opt)
         local libs = {}
         local p = "clang+llvm-15.0.1-x86_64-apple-darwin/lib/*.a"
