@@ -11,13 +11,10 @@ target("meta")
     add_links("lib/**")
     add_links("Version", "advapi32", "Shcore", "user32", "shell32", "Ole32", {public = true})
 else
-
-add_requires("brew::zstd", {alias = "zstd"})
-add_requires("brew::llvm", {alias = "llvm"})
-
 target("meta")
     set_kind("binary")
     add_files("**.cpp")
-    add_packages("llvm", "zstd", "ncurses")
     add_syslinks("pthread", "curses")
+    add_links("clang+llvm-15.0.1-x86_64-apple-darwin/lib/**")
+    add_includedirs("clang+llvm-15.0.1-x86_64-apple-darwin/include")
 end
