@@ -19,7 +19,8 @@ target("meta")
     add_files("**.cpp")
     add_cxflags("-Wno-c++11-narrowing")
     add_syslinks("pthread", "curses")
-    add_links("clang+llvm-15.0.1-x86_64-apple-darwin/lib/**")
+    add_linkdirs("clang+llvm-15.0.1-x86_64-apple-darwin/lib")
+    add_links("clangTooling", "clangAST")
     add_includedirs("clang+llvm-15.0.1-x86_64-apple-darwin/include")
     
 end
