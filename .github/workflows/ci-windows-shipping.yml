@@ -1,4 +1,4 @@
-name: macos-build-shipping
+name: windows-build-shipping
 
 on: [push, pull_request]
   
