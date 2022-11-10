@@ -7,11 +7,11 @@ if (is_os("windows")) then
 else
 
 add_requires("brew::llvm", {alias = "llvm"})
-add_requires("brew::zlib", {alias = "zlib"})
+add_requires("brew::zstd", {alias = "zstd"})
 
 target("SkrReflector")
     set_kind("binary")
     add_files("**.cpp")
     add_packages("llvm")
-    add_packages("zlib")
+    add_packages("zstd")
 end
