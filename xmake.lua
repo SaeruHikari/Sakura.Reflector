@@ -18,5 +18,5 @@ target("meta")
     set_kind("binary")
     add_files("**.cpp")
     add_packages("llvm", "zstd", "ncurses")
-    add_syslinks("pthread", "curses", "z", "dl", "m", "rt", "tinfo", "zstd")
+    add_syslinks("pthread", "curses", "z", "dl", "m", "zstd")
 end
