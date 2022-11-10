@@ -8,11 +8,11 @@ else
 
 add_requires("brew::llvm", {alias = "llvm"})
 add_requires("brew::zstd", {alias = "zstd"})
+add_requires("brew::ncurses", {alias = "ncurses"})
 
 target("SkrReflector")
     set_kind("binary")
     add_files("**.cpp")
-    add_packages("llvm")
-    add_packages("zstd")
+    add_packages("llvm", "zstd", "ncurses")
     add_syslinks("pthread")
 end
