@@ -21,6 +21,14 @@ target("meta")
     add_syslinks("pthread", "curses")
     add_linkdirs("clang+llvm-15.0.1-x86_64-apple-darwin/lib")
     add_links("clangTooling", "clangAST")
+    on_load(function (target, opt)
+        local libs = {}
+        local p = "clang+llvm-15.0.1-x86_64-apple-darwin/lib"
+        for __, filepath in ipairs(os.files(p)) do
+            table.insert(libs, filepath)
+        end
+        target:add("links", libs)
+    end)
     add_includedirs("clang+llvm-15.0.1-x86_64-apple-darwin/include")
     
 end
