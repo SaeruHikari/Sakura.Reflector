@@ -19,7 +19,6 @@ jobs:
         xmake l setup.lua
     - name: Shipping
       run: |
-        llvm-config --system-libs
         xmake f -m release -y --policies=build.ccache:n
         xmake -y -v
     - name: UploadShipping
