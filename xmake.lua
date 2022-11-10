@@ -25,7 +25,9 @@ target("meta")
         local libs = {}
         local p = "clang+llvm-15.0.1-x86_64-apple-darwin/lib/**.a"
         for __, filepath in ipairs(os.files(p)) do
-            table.insert(libs, path.basename(filepath))
+            local basename = path.basename(filepath)
+            local matchname = string.match(basename, "lib%s")
+            table.insert(libs, matchname or basename)
         end
         target:add("links", libs)
     end)
