@@ -14,4 +14,5 @@ target("SkrReflector")
     add_files("**.cpp")
     add_packages("llvm")
     add_packages("zstd")
+    add_syslinks("pthread")
 end

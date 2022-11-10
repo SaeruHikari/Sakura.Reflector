@@ -15,6 +15,7 @@ jobs:
     - name: Set env
       id: env
       run: |
+        llvm-config --system-libs
         xmake g -c
         xmake l setup.lua
     - name: Shipping
