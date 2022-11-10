@@ -9,6 +9,7 @@ target("meta")
     set_kind("binary")
     add_files("**.cpp")
     add_cxflags("-Wno-c++11-narrowing")
+    add_cxflags("-fno-rtti")
     add_links("lib/**")
     add_links("Version", "advapi32", "Shcore", "user32", "shell32", "Ole32", {public = true})
 
